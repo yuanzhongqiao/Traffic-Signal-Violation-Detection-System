@@ -1,159 +1,186 @@
-# Traffic Signal Violation Detection System using Computer Vision
-
-> <h3><a href="https://youtu.be/PxHkKLUk_QM" target="_blank">Project Video Demonstration</a></h3>
-
-> <h3><a href="https://drive.google.com/open?id=1H5RjHPJ0CK5yq2_3vwwo4CwZt1NXTeVB">Project Report</a></h3>
-
-> <h3><a href="https://drive.google.com/open?id=1l46H2pNTbLLcIFSHWsMtor-vlvNSA4Gu">Project Slide</a></h3>
-
+<div class="Box-sc-g0xbh4-0 bJMeLZ js-snippet-clipboard-copy-unpositioned" data-hpc="true"><article class="markdown-body entry-content container-lg" itemprop="text"><div class="markdown-heading" dir="auto"><h1 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用计算机视觉的交通信号违规检测系统</font></font></h1><a id="user-content-traffic-signal-violation-detection-system-using-computer-vision" class="anchor" aria-label="永久链接：使用计算机视觉的交通信号违规检测系统" href="#traffic-signal-violation-detection-system-using-computer-vision"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<blockquote>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><a href="https://youtu.be/PxHkKLUk_QM" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目视频演示</font></font></a></h3><a id="user-content-project-video-demonstration" class="anchor" aria-label="永久链接：项目视频演示" href="#project-video-demonstration"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+</blockquote>
+<blockquote>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><a href="https://drive.google.com/open?id=1H5RjHPJ0CK5yq2_3vwwo4CwZt1NXTeVB" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目报告</font></font></a></h3><a id="user-content-project-report" class="anchor" aria-label="永久链接：项目报告" href="#project-report"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+</blockquote>
+<blockquote>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><a href="https://drive.google.com/open?id=1l46H2pNTbLLcIFSHWsMtor-vlvNSA4Gu" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目幻灯片</font></font></a></h3><a id="user-content-project-slide" class="anchor" aria-label="永久链接：项目幻灯片" href="#project-slide"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+</blockquote>
 <br>
-
-![Violation_Detection_Frame](Images/Violation_Detection_Frame_Red.jpg)
-
-## INTRO
-<img src="Images/Workflow Diagram.jpg" alt="Workflow Diagram" align="right" width="250" />
-This is a software for practice of developing a system from completely scratch. Understanding this will help a lot in system development and basic structure of a system along with computer vision, GUI with python library Tkinter and basic opencv.
-
-Go [here](#quick-starting-the-project) if you don't have time.
-
-## Table of content
-
-- [Motivation](#motivation)
-- [Introduction](#introduction)
-- [Objectives](#objectives)
-- [Quick Starting the project](#quick-starting-the-project)
-- [System Overview](#system-overview)
-- [Methodology](#methodology)
-    - [Vehicle Classification](#vehicle-classification)
-    - [Violation Detection](#violation-detection)
-- [Implementation](#implementation)
-    - [Computer Vision](#computer-vision)
-    - [Graphical User Interface](#graphical-user-interface)
-- [Contributing](#contributing)
-- [Links and References](#links-and-references)
-- [Author](#author)
-- [Licensing](#licensing)
-
-## Motivation
-This project is made for the third year second semester System Development (CSE-3200) course.
-
-## Introduction
-The increasing number of cars in cities can cause high volume of traffic, and implies that traffic violations become more critical nowadays in Bangladesh and also around the world. This causes severe destruction of property and more accidents that may endanger the lives of the people. To solve the alarming problem and prevent such unfathomable consequences, traffic violation detection systems are needed. For which the system enforces proper traffic regulations at all times, and apprehend those who does not comply. A traffic violation detection system must be realized in real-time as the authorities track the roads all the time. Hence, traffic enforcers will not only be at ease in implementing safe roads accurately, but also efficiently; as the traffic detection system detects violations faster than humans. This system can detect traffic light violation in real-time. A user friendly graphical interface is associated with the system to make it simple for the user to operate the system, monitor traffic and take action against the violations of traffic rules.
-
-
-## Objectives
-The goal of the project is to automate the traffic signal violation detection system and make it easy for the traffic police department to monitor the traffic and take action against the violated vehicle owner in a fast and efficient way. Detecting and tracking the vehicle and their activities accurately is the main priority of the system. 
-
-## Quick starting the project
-1. `git clone https://github.com/anmspro/Traffic-Signal-Violation-Detection-System.git`
-2. Change the directories in "Project-GUI.py" & "object_detection.py"
-3. If the `yolov3.weights` is not accessible, download the file from this <a href="https://pjreddie.com/media/files/yolov3.weights" target="_blank">link</a>.
-4. Install required python dependencies into your python virtual environment.
-5. `python Project-GUI.py`
-
-## System Overview
-
-![System Overview](Images/System_Flowchart.jpg)
-            
-     Figure-1: Flow diagram of traffic signal violation detection system.
-The System consists of two main components -
-* Vehicle detection model
-* A graphical user interface (GUI)
-
-First the video footage from the road side is sent to the system. Vehicles are detected from the footage. Tracking the activity of vehicles, system determines if there is any violation or not. Figure 1 shows how the system works.
-
-The Graphical User Interface (GUI) makes the system interactive for the user to use. User can monitor the traffic footage and get the alert of violation with the detected bounding box of vehicle. User can take further action using the GUI. 
-
-## Methodology
-### Vehicle Classification
-From the given video footage, moving objects are detected. An object detection model YOLOv3 is used to classify those moving objects into respective classes. YOLOv3 is the third object detection algorithm in YOLO (You Only Look Once) family. It improved the accuracy with many tricks and is more capable of detecting objects. The classifier model is built with Darknet-53 architecture. Table-1 shows how the neural network architecture is designed. 
-
-![Darknet Architecture](Images/Darknet-53.png)
-
-
-### Violation detection
-
-The vehicles are detected using YOLOv3 model. After detecting the vehicles, violation cases are checked. A traffic line is drawn over the road in the preview of the given video footage by the user. The line specifies that the traffic light is red. Violation happens if any vehicle crosses the traffic line in red state.
-
-The detected objects have a green bounding box. If any vehicle passes the traffic light in red state, violation happens. After detecting violation, the bounding box around the vehicle becomes red.
-
-
-## Implementation
-### Computer Vision
-OpenCV is an open source computer vision and machine learning software library which is used in this project for image processing purpose. Tensorflow is used for implementing the vehicle classifier with darknet-53. 
-
-
-### Graphical User Interface (GUI)
-The graphical user interface has all the options needed for the software. The software serves administration and other debugging purposes. We don’t need to edit code for any management. For example, if we need to open any video footage, we can do it with the Open item (Figure-2). 
-
-![Figure 2](Images/Initial_View.jpg)
-
-     Figure-2: Initial user interface view.
-
-Primarily, for the start of the project usage, the administrator needs to open a video footage using ‘Open’ item that can be found under ‘File’ (Figure-2). The administrator can open any video footage from the storage files (Figure-3).
-
-![Figure 3](Images/Open_Video.JPG)
-
-     Figure-3: Opening a video footage from storage.
-
-After opening a video footage from storage, the system will get a preview of the footage. The preview contains a frame from the given video footage. The preview is used to identify roads and draw a traffic line over the road. The traffic line drawn by administrator will act as a traffic signal line. To enable the line drawing feature, we need to select ‘Region of interest’ item from the ‘Analyze’ option (Figure-4). After that administrator will need to select two points to draw a line that specifies traffic signal.
-
-![Figure 4](Images/Select_Region_of_Interest.jpg)
-
-     Figure-4: Region of Interest (Drawing signal line)
-
-Selecting the region of interest will start violation detection system. The coordinates of the line drawn will be shown on console (Figure-5). The violation detection system will start immediately after the line is drawn. At first the weights will be loaded. Then the system will detect objects and check for violations. The output will be shown frame by frame from the GUI (Figure-6). 
-
-![Figure 5](Images/Line_Coordinates.JPG)
-
-     Figure-5: Line Coordinates (from console)
-
-![Figure 6](Images/Violation_Detection_Frame.jpg)
-
-     Figure-6: Final Output (on each frame)
-
-The system will show output until the last frame of the footage. In background a ‘output.mp4’ will be generated. The file will be in ‘output’ folder of ‘Resources’. The process will be immediately terminated by clicking ‘q’.
-
-After processing a video footage, the administrator can add another video footage from the initial file manager (Figure-2). If the work is complete the administrator can quit using ‘Exit’ item from File option.
-
-
-Libraries used for graphical user interface:
-* Tkinter
-
-
-## Contributing
-The main reason to publish something open source, is that anyone can just jump in and start contributing to my project.
-So If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
-
-## Links and References
-- Project homepage: https://github.com/anmspro/Traffic-Signal-Violation-Detection-System
-- Repository: https://github.com/anmspro/Traffic-Signal-Violation-Detection-System.git
-- Issue tracker: https://github.com/anmspro/Traffic-Signal-Violation-Detection-System/issues
-- G. Ou, Y. Gao and Y. Liu, "Real TimeVehicularTrafficViolationDetectioninTrafficMonitorin gStream," in 2012 IEEE/WIC/ACM , Beijing, China , 2012.
-- X. Wang, L.-M. Meng, B. Zhang, J. Lu and K.-L.Du, "A Video-based Traffic Violation Detection System," in MEC, Shenyang, China, 2013.
-- Joseph Redmon and Ali Farhadi, "YOLOv3: An Incremental Improvement".
-- https://machinelearningmastery.com/how-to-perform-object-detection-with-yolov3-in-keras
-- In case of any help you may need from me, please contact abunomanmd.sakib@gmail.com directly without any hesitation! I will be glad to help you.
-
-## Author
-Abu Noman Md. Sakib, Pias Roy<br>
-abunomanmd.sakib@gmail.com<br>
-pias.kuet@gmail.com<br>
-Student at Department of Computer Science and Engineering<br>
-Khulna University of Engineering & Technology, Khulna<br>
-Bangladesh
-
-<b> Supervised under </b><br>
-Mahmudul Hasan Shauqi<br>
-mahmudulhasanshauqi@gmail.com<br>
-Lecturer<br>
-Dept. of Computer Science and Engineering<br>
-Khulna University of Engineering & Technology<br>
-
-## Licensing
-The code in this project is licensed under GNU GPLv3 license.
-
-## Stargazers over time
-
-![Stargazers over time](https://starchart.cc/anmspro/Traffic-Signal-Violation-Detection-System.svg)
-      
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/Violation_Detection_Frame_Red.jpg"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/Violation_Detection_Frame_Red.jpg" alt="违规检测帧" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">介绍</font></font></h2><a id="user-content-intro" class="anchor" aria-label="永久链接：简介" href="#intro"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/Workflow Diagram.jpg"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/Workflow Diagram.jpg" alt="工作流程图" align="right" width="250" style="max-width: 100%;"></a></p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+这是一款用于练习从头开始开发系统的软件。</font><font style="vertical-align: inherit;">理解这一点将对系统开发和系统的基本结构以及计算机视觉、带有 python 库 Tkinter 的 GUI 和基本 opencv 有很大帮助。
+</font></font><p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果你没有时间</font><font style="vertical-align: inherit;">就去</font></font><a href="#quick-starting-the-project"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">这里吧。</font></font></a><font style="vertical-align: inherit;"></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">表中的内容</font></font></h2><a id="user-content-table-of-content" class="anchor" aria-label="永久链接：目录" href="#table-of-content"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><a href="#motivation"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">动机</font></font></a></li>
+<li><a href="#introduction"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">介绍</font></font></a></li>
+<li><a href="#objectives"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标</font></font></a></li>
+<li><a href="#quick-starting-the-project"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">快速启动项目</font></font></a></li>
+<li><a href="#system-overview"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">系统总览</font></font></a></li>
+<li><a href="#methodology"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></a>
+<ul dir="auto">
+<li><a href="#vehicle-classification"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">车辆分类</font></font></a></li>
+<li><a href="#violation-detection"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">违规检测</font></font></a></li>
+</ul>
+</li>
+<li><a href="#implementation"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执行</font></font></a>
+<ul dir="auto">
+<li><a href="#computer-vision"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">计算机视觉</font></font></a></li>
+<li><a href="#graphical-user-interface"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">图形用户界面</font></font></a></li>
+</ul>
+</li>
+<li><a href="#contributing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">贡献</font></font></a></li>
+<li><a href="#links-and-references"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">链接和参考</font></font></a></li>
+<li><a href="#author"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作者</font></font></a></li>
+<li><a href="#licensing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">许可</font></font></a></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">动机</font></font></h2><a id="user-content-motivation" class="anchor" aria-label="永久链接：动机" href="#motivation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目是为第三年第二学期系统开发（CSE-3200）课程而设计的。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">介绍</font></font></h2><a id="user-content-introduction" class="anchor" aria-label="永久链接：简介" href="#introduction"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">城市中汽车数量的增加会导致交通量增加，这意味着当今孟加拉国乃至世界各地的交通违法行为变得更加严重。</font><font style="vertical-align: inherit;">这造成严重的财产损失和更多可能危及人民生命的事故。</font><font style="vertical-align: inherit;">为了解决这个令人震惊的问题并防止这种难以想象的后果，需要交通违规检测系统。</font><font style="vertical-align: inherit;">为此，系统始终执行适当的交通规则，并逮捕那些不遵守规定的人。</font><font style="vertical-align: inherit;">由于当局一直在跟踪道路，因此必须实现实时交通违规检测系统。</font><font style="vertical-align: inherit;">因此，交通执法人员不仅可以轻松准确、高效地实施安全道路；</font><font style="vertical-align: inherit;">因为交通检测系统检测违规行为的速度比人类更快。</font><font style="vertical-align: inherit;">该系统可以实时检测交通灯违规情况。</font><font style="vertical-align: inherit;">系统配有用户友好的图形界面，使用户可以轻松操作系统、监控交通并对违反交通规则的行为采取行动。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">目标</font></font></h2><a id="user-content-objectives" class="anchor" aria-label="永久链接：目标" href="#objectives"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目的目标是实现交通信号违规检测系统的自动化，使交警部门能够轻松监控交通，并快速有效地对违规车主采取行动。</font><font style="vertical-align: inherit;">准确地检测和跟踪车辆及其活动是该系统的首要任务。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">快速启动项目</font></font></h2><a id="user-content-quick-starting-the-project" class="anchor" aria-label="永久链接：快速启动项目" href="#quick-starting-the-project"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ol dir="auto">
+<li><code>git clone https://github.com/anmspro/Traffic-Signal-Violation-Detection-System.git</code></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">更改“Project-GUI.py”和“object_detection.py”中的目录</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果无法访问，请从此</font><a href="https://pjreddie.com/media/files/yolov3.weights" rel="nofollow"><font style="vertical-align: inherit;">链接</font></a></font><code>yolov3.weights</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">下载文件</font><font style="vertical-align: inherit;">。</font></font><a href="https://pjreddie.com/media/files/yolov3.weights" rel="nofollow"><font style="vertical-align: inherit;"></font></a><font style="vertical-align: inherit;"></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">将所需的 python 依赖项安装到 python 虚拟环境中。</font></font></li>
+<li><code>python Project-GUI.py</code></li>
+</ol>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">系统总览</font></font></h2><a id="user-content-system-overview" class="anchor" aria-label="永久链接：系统概述" href="#system-overview"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/System_Flowchart.jpg"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/System_Flowchart.jpg" alt="系统总览" style="max-width: 100%;"></a></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code> Figure-1: Flow diagram of traffic signal violation detection system.
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value=" Figure-1: Flow diagram of traffic signal violation detection system." tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该系统由两个主要部分组成 -</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">车辆检测模型</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">图形用户界面 (GUI)</font></font></li>
+</ul>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">首先，路边的视频片段被发送到系统。</font><font style="vertical-align: inherit;">从录像中检测到车辆。</font><font style="vertical-align: inherit;">跟踪车辆的活动，系统确定是否存在任何违规行为。</font><font style="vertical-align: inherit;">图 1 显示了系统的工作原理。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">图形用户界面（GUI）使系统具有交互性，供用户使用。</font><font style="vertical-align: inherit;">用户可以监控交通录像并通过检测到的车辆边界框获得违规警报。</font><font style="vertical-align: inherit;">用户可以使用 GUI 采取进一步的操作。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">方法</font></font></h2><a id="user-content-methodology" class="anchor" aria-label="永久链接：方法论" href="#methodology"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">车辆分类</font></font></h3><a id="user-content-vehicle-classification" class="anchor" aria-label="永久链接：车辆分类" href="#vehicle-classification"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">从给定的视频片段中，检测到移动物体。</font><font style="vertical-align: inherit;">目标检测模型 YOLOv3 用于将这些移动目标分类为相应的类别。</font><font style="vertical-align: inherit;">YOLOv3 是 YOLO（You Only Look Once）家族中的第三个目标检测算法。</font><font style="vertical-align: inherit;">它通过许多技巧提高了准确性，并且更有能力检测物体。</font><font style="vertical-align: inherit;">分类器模型采用 Darknet-53 架构构建。</font><font style="vertical-align: inherit;">表 1 显示了神经网络架构的设计方式。</font></font></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/Darknet-53.png"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/Darknet-53.png" alt="暗网架构" style="max-width: 100%;"></a></p>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">违规检测</font></font></h3><a id="user-content-violation-detection" class="anchor" aria-label="永久链接：违规检测" href="#violation-detection"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">使用 YOLOv3 模型检测车辆。</font><font style="vertical-align: inherit;">检测车辆后，对违规情况进行检查。</font><font style="vertical-align: inherit;">用户在给定视频片段的预览中在道路上绘制了一条交通线。</font><font style="vertical-align: inherit;">该行指定交通灯为红色。</font><font style="vertical-align: inherit;">如果任何车辆跨越红色状态的交通线，就会发生违规。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">检测到的对象具有绿色边界框。</font><font style="vertical-align: inherit;">如果任何车辆通过红灯状态的交通灯，就会发生违规。</font><font style="vertical-align: inherit;">检测到违规后，车辆周围的边界框会变成红色。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">执行</font></font></h2><a id="user-content-implementation" class="anchor" aria-label="永久链接：实施" href="#implementation"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">计算机视觉</font></font></h3><a id="user-content-computer-vision" class="anchor" aria-label="永久链接：计算机视觉" href="#computer-vision"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">OpenCV 是一个开源计算机视觉和机器学习软件库，在该项目中用于图像处理目的。</font><font style="vertical-align: inherit;">Tensorflow 用于通过 darknet-53 实现车辆分类器。</font></font></p>
+<div class="markdown-heading" dir="auto"><h3 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">图形用户界面 (GUI)</font></font></h3><a id="user-content-graphical-user-interface-gui" class="anchor" aria-label="永久链接：图形用户界面 (GUI)" href="#graphical-user-interface-gui"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">图形用户界面具有该软件所需的所有选项。</font><font style="vertical-align: inherit;">该软件用于管理和其他调试目的。</font><font style="vertical-align: inherit;">我们不需要编辑任何管理代码。</font><font style="vertical-align: inherit;">例如，如果我们需要打开任何视频片段，我们可以使用“打开”项来完成（图2）。</font></font></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/Initial_View.jpg"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/Initial_View.jpg" alt="图2" style="max-width: 100%;"></a></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code> Figure-2: Initial user interface view.
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value=" Figure-2: Initial user interface view." tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">首先，为了开始使用项目，管理员需要使用“文件”下的“打开”项打开视频片段（图 2）。</font><font style="vertical-align: inherit;">管理员可以打开存储文件中的任何视频片段（图3）。</font></font></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/Open_Video.JPG"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/Open_Video.JPG" alt="图3" style="max-width: 100%;"></a></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code> Figure-3: Opening a video footage from storage.
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value=" Figure-3: Opening a video footage from storage." tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">从存储中打开视频片段后，系统将获得该片段的预览。</font><font style="vertical-align: inherit;">预览包含给定视频片段中的一帧。</font><font style="vertical-align: inherit;">预览用于识别道路并在道路上绘制交通线。</font><font style="vertical-align: inherit;">管理员绘制的交通线将作为交通信号线。</font><font style="vertical-align: inherit;">要启用画线功能，我们需要从“分析”选项中选择“感兴趣区域”项（图 4）。</font><font style="vertical-align: inherit;">之后，管理员需要选择两个点来绘制一条指定交通信号的线。</font></font></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/Select_Region_of_Interest.jpg"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/Select_Region_of_Interest.jpg" alt="图4" style="max-width: 100%;"></a></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code> Figure-4: Region of Interest (Drawing signal line)
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value=" Figure-4: Region of Interest (Drawing signal line)" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">选择感兴趣的区域将启动违规检测系统。</font><font style="vertical-align: inherit;">绘制的线的坐标将显示在控制台上（图 5）。</font><font style="vertical-align: inherit;">划线后，违规检测系统将立即启动。</font><font style="vertical-align: inherit;">首先将加载重量。</font><font style="vertical-align: inherit;">然后系统将检测对象并检查是否存在违规行为。</font><font style="vertical-align: inherit;">输出将在 GUI 中逐帧显示（图 6）。</font></font></p>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/Line_Coordinates.JPG"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/Line_Coordinates.JPG" alt="图5" style="max-width: 100%;"></a></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code> Figure-5: Line Coordinates (from console)
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value=" Figure-5: Line Coordinates (from console)" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer" href="/anmspro/Traffic-Signal-Violation-Detection-System/blob/master/Images/Violation_Detection_Frame.jpg"><img src="/anmspro/Traffic-Signal-Violation-Detection-System/raw/master/Images/Violation_Detection_Frame.jpg" alt="图6" style="max-width: 100%;"></a></p>
+<div class="snippet-clipboard-content notranslate position-relative overflow-auto"><pre class="notranslate"><code> Figure-6: Final Output (on each frame)
+</code></pre><div class="zeroclipboard-container">
+    <clipboard-copy aria-label="Copy" class="ClipboardButton btn btn-invisible js-clipboard-copy m-2 p-0 tooltipped-no-delay d-flex flex-justify-center flex-items-center" data-copy-feedback="Copied!" data-tooltip-direction="w" value=" Figure-6: Final Output (on each frame)" tabindex="0" role="button">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-copy js-clipboard-copy-icon">
+    <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path>
+</svg>
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+    </clipboard-copy>
+  </div></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">系统将显示输出直到素材的最后一帧。</font><font style="vertical-align: inherit;">在后台将生成“output.mp4”。</font><font style="vertical-align: inherit;">该文件将位于“资源”的“输出”文件夹中。</font><font style="vertical-align: inherit;">单击“q”将立即终止该过程。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">处理视频片段后，管理员可以从初始文件管理器添加另一个视频片段（图 2）。</font><font style="vertical-align: inherit;">如果工作完成，管理员可以使用文件选项中的“退出”项退出。</font></font></p>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">用于图形用户界面的库：</font></font></p>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">特金特</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">贡献</font></font></h2><a id="user-content-contributing" class="anchor" aria-label="永久链接：贡献" href="#contributing"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">发布开源内容的主要原因是任何人都可以加入并开始为我的项目做出贡献。</font><font style="vertical-align: inherit;">因此，如果您想做出贡献，请分叉存储库并使用功能分支。</font><font style="vertical-align: inherit;">热烈欢迎拉取请求。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">链接和参考</font></font></h2><a id="user-content-links-and-references" class="anchor" aria-label="永久链接：链接和参考文献" href="#links-and-references"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<ul dir="auto">
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">项目主页：</font></font><a href="https://github.com/anmspro/Traffic-Signal-Violation-Detection-System"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/anmspro/Traffic-Signal-Violation-Detection-System</font></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">存储库：</font></font><a href="https://github.com/anmspro/Traffic-Signal-Violation-Detection-System.git"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/anmspro/Traffic-Signal-Violation-Detection-System.git</font></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">问题跟踪器：</font></font><a href="https://github.com/anmspro/Traffic-Signal-Violation-Detection-System/issues"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://github.com/anmspro/Traffic-Signal-Violation-Detection-System/issues</font></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">G. Ou、Y. Gau 和 Y. Liu，“交通监控流中的实时车辆交通违规检测”，2012 年 IEEE/WIC/ACM，中国北京，2012 年。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">X.王，L.-M。</font><font style="vertical-align: inherit;">孟，B. 张，J. Lu 和 K.-L.Du，“基于视频的交通违规检测系统”，MEC，沉阳，中国，2013 年。</font></font></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Joseph Redmon 和 Ali Farhadi，“YOLOv3：渐进式改进”。</font></font></li>
+<li><a href="https://machinelearningmastery.com/how-to-perform-object-detection-with-yolov3-in-keras" rel="nofollow"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">https://machinelearningmastery.com/how-to-perform-object-detection-with-yolov3-in-keras</font></font></a></li>
+<li><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">如果您需要我的任何帮助，请</font><font style="vertical-align: inherit;">毫不犹豫地直接联系</font></font><a href="mailto:abunomanmd.sakib@gmail.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">abunomanmd.sakib@gmail.com ！</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">我很乐意为您提供帮助。</font></font></li>
+</ul>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">作者</font></font></h2><a id="user-content-author" class="anchor" aria-label="永久链接： 作者" href="#author"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abu Noman Md. Sakib, Pias Roy </font></font><br>
+<a href="mailto:abunomanmd.sakib@gmail.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">abunomanmd.sakib@gmail.com </font></font></a><br>
+<a href="mailto:pias.kuet@gmail.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pias.kuet@gmail.com</font></font></a><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">库尔纳工程技术大学
+计算机科学与工程系学生</font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+，</font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+孟加拉国库尔纳</font></font></p>
+<p dir="auto"><b><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">导师</font></font></b><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+Mahmudul Hasan Shauqi </font></font><br>
+<a href="mailto:mahmudulhasanshauqi@gmail.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">mahmudulhasanshauqi@gmail.com</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+库尔纳工程技术大学</font><font style="vertical-align: inherit;">
+计算机科学与工程系</font></font><br><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+讲师</font></font><br><font style="vertical-align: inherit;"></font><br><font style="vertical-align: inherit;"></font><br></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">许可</font></font></h2><a id="user-content-licensing" class="anchor" aria-label="永久链接：许可" href="#licensing"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">该项目中的代码已获得 GNU GPLv3 许可证的许可。</font></font></p>
+<div class="markdown-heading" dir="auto"><h2 tabindex="-1" class="heading-element" dir="auto"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">随着时间的推移观星者</font></font></h2><a id="user-content-stargazers-over-time" class="anchor" aria-label="永久链接：随着时间的推移观星者" href="#stargazers-over-time"><svg class="octicon octicon-link" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"></path></svg></a></div>
+<p dir="auto"><a target="_blank" rel="noopener noreferrer nofollow" href="https://camo.githubusercontent.com/e94150755f73d0cc37520b7be2b6d9ea43fe802e691119540896d7a7862d8d3f/68747470733a2f2f7374617263686172742e63632f616e6d7370726f2f547261666669632d5369676e616c2d56696f6c6174696f6e2d446574656374696f6e2d53797374656d2e737667"><img src="https://camo.githubusercontent.com/e94150755f73d0cc37520b7be2b6d9ea43fe802e691119540896d7a7862d8d3f/68747470733a2f2f7374617263686172742e63632f616e6d7370726f2f547261666669632d5369676e616c2d56696f6c6174696f6e2d446574656374696f6e2d53797374656d2e737667" alt="随着时间的推移观星者" data-canonical-src="https://starchart.cc/anmspro/Traffic-Signal-Violation-Detection-System.svg" style="max-width: 100%;"></a></p>
+</article></div>
